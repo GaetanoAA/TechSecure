@@ -8,19 +8,26 @@ public class Puzzle : MonoBehaviour
 {
 
     public bool IsCompleted { get; private set; }
+    private bool itemSpawn;
+
+    public GameObject ClaimItem;
 
     private GameObject displayImage;
 
     void Start()
     {
+        itemSpawn = false;
         displayImage = GameObject.Find("displayImage");
     }
 
     void Update()
     {
-        if (CompletePuzzle())
+        if (CompletePuzzle() && !itemSpawn)
         {
-            Debug.Log("Completato");
+            var claimItem = Instantiate(ClaimItem, GameObject.Find("piece8").transform, false);
+            claimItem.transform.localScale = new Vector3(30, 30, 30);
+            claimItem.SetActive(true);
+            itemSpawn = true;
         }
         HideDisplay();
     }

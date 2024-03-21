@@ -9,11 +9,15 @@ public class ButtonHandler : MonoBehaviour
     private float initialCameraSize;
     private Vector3 initialCameraPosition;
 
+    private ZoomInObject[] zoomInObjects;
+
     private void Start()
     {
         currentDisplay = GameObject.Find("displayImage").GetComponent<DisplayImage>();
         initialCameraSize = Camera.main.orthographicSize;
         initialCameraPosition = Camera.main.transform.position;
+
+        zoomInObjects = FindObjectsOfType<ZoomInObject>();
     }
 
     public void OnRightClickArrow()
@@ -30,8 +34,9 @@ public class ButtonHandler : MonoBehaviour
     {
         if (currentDisplay.CurrentState == DisplayImage.State.zoom)
         {
-            GameObject.Find("displayImage").GetComponent<DisplayImage>().CurrentState = DisplayImage.State.normal;
-            var zoomInObjects = FindObjectsOfType<ZoomInObject>();
+            //GameObject.Find("displayImage").GetComponent<DisplayImage>().CurrentState = DisplayImage.State.normal;
+            //var zoomInObjects = FindObjectsOfType<ZoomInObject>();
+            currentDisplay.CurrentState = DisplayImage.State.normal;
             foreach (var zoomInObject in zoomInObjects)
             {
                 zoomInObject.gameObject.layer = 0;
@@ -45,6 +50,11 @@ public class ButtonHandler : MonoBehaviour
             currentDisplay.GetComponent<SpriteRenderer>().sprite
                 = Resources.Load<Sprite>("Sprites/wall" + currentDisplay.CurrentWall);
             currentDisplay.CurrentState = DisplayImage.State.normal;
+
+            foreach (var zoomInObject in zoomInObjects)
+            {
+                zoomInObject.gameObject.layer = 0;
+            }
         }
     }
 }

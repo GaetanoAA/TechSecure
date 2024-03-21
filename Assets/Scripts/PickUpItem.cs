@@ -8,6 +8,10 @@ public class PickUpItem : MonoBehaviour, IInteractable
     public string DisplaySprite;
     public enum property { usable, displayable };
 
+    public string DisplayImage;
+
+    public string CombinationItem;
+
     public property itemProperty;
 
     private GameObject InventorySlots;
@@ -19,11 +23,12 @@ public class PickUpItem : MonoBehaviour, IInteractable
 
     void Start()
     {
-        InventorySlots = GameObject.Find("Slots");
+        
     }
 
-    void ItemPickUp()
+    public void ItemPickUp()
     {
+        InventorySlots = GameObject.Find("Slots");
         if (InventorySlots == null)
         {
             Debug.LogError("InventorySlots not initialized.");
@@ -36,12 +41,10 @@ public class PickUpItem : MonoBehaviour, IInteractable
             {
                 slot.transform.GetChild(0).GetComponent<Image>().sprite =
                     Resources.Load<Sprite>("Inventory Items/" + DisplaySprite);
-                slot.GetComponent<Slot>().AssignProperty((int)itemProperty);
+                slot.GetComponent<Slot>().AssignProperty((int)itemProperty, DisplayImage, CombinationItem);
                 Destroy(gameObject);
                 break;
             }
         }
-            
-
     }
 }

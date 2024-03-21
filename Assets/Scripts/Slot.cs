@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class Slot : MonoBehaviour// IPointerClickHandler
+public class Slot : MonoBehaviour, IPointerClickHandler
 {
-    /*private GameObject inventory;
-
+    private GameObject inventory;
     public enum property { usable, displayable };
     public property ItemProperty { get; private set; }
 
@@ -24,5 +23,5 @@ public class Slot : MonoBehaviour// IPointerClickHandler
     public void AssignProperty(int orderNumber)
     {
         ItemProperty = (property)orderNumber;
-    }*/
+    }
 }

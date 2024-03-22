@@ -44,7 +44,7 @@ public class Computer : MonoBehaviour, IPointerClickHandler
             if (inputPassword == CorrectPassword)
             {
                 isCorrectPassword = true;
-                Destroy(GameObject.Find("ScreenActivator"));
+                Destroy(GameObject.Find("ScreenActivetor"));
                 Destroy(ScreenPanel);
                // GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/chess_solved"); //sprite cubi
             }

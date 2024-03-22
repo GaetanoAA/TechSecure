@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class ExitDoor : MonoBehaviour, IInteractable
 {
@@ -32,7 +33,15 @@ public class ExitDoor : MonoBehaviour, IInteractable
 
             Instantiate(EscapeMessage, GameObject.Find("wall7").transform);
             this.gameObject.layer = 1;
+
+            StartCoroutine(LoadMenu());
         }
 
+    }
+
+    public IEnumerator LoadMenu()
+    {
+        yield return new WaitForSeconds(4);
+        SceneManager.LoadScene("menu");
     }
 }

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ButtonHandler : MonoBehaviour
 {
@@ -56,5 +57,15 @@ public class ButtonHandler : MonoBehaviour
                 zoomInObject.gameObject.layer = 0;
             }
         }
+    }
+
+    public void OnClickPlay()
+    {
+        SceneManager.LoadScene("SampleScene");
+    }
+
+    public void OnClickExit()
+    {
+        Application.Quit();
     }
 }

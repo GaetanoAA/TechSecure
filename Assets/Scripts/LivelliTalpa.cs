@@ -17,6 +17,7 @@ public class LivelliTalpa : MonoBehaviour
     public GameObject hackerMorto2;
     public GameObject hackerMorto3;
     public GameObject rispostaSbagliata;
+    public GameObject ricompensaVittoria;
 
     // Start is called before the first frame update
     void Start()
@@ -48,33 +49,32 @@ public class LivelliTalpa : MonoBehaviour
     void VerificaRispostaLivello1()
     {
         
-        if (Input.GetKey(KeyCode.Return))
-        {
-           
-            inputRisposta = ScreenPanel.transform.Find("Text").GetComponent<Text>().text;
-
-            ScreenPanel.transform.Find("Text").GetComponent<Text>().text = "";
-
-
-            if (inputRisposta == "1")
+            if (Input.GetKey(KeyCode.Return))
             {
-                    
-                Destroy(GameObject.Find("ScreenActivetor"));
-                Destroy(ScreenPanel);
-            Destroy(GameObject.Find("Livello1"));
-            Destroy(GameObject.Find("hacker1"));
-            hacker2.SetActive(true);
-                hackerMorto1.SetActive(true);
-                // GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/chess_solved"); //sprite cubi
-                
-            }
-            else
-            {
-                rispostaSbagliata.SetActive(true);
-            }
 
-            
-        }
+                inputRisposta = ScreenPanel.transform.Find("Text").GetComponent<Text>().text;
+
+                ScreenPanel.transform.Find("Text").GetComponent<Text>().text = "";
+
+
+                if (inputRisposta == "1")
+                {
+
+                    Destroy(GameObject.Find("ScreenActivetor"));
+                    Destroy(ScreenPanel);
+                    Destroy(GameObject.Find("Livello1"));
+                    Destroy(GameObject.Find("hacker1"));
+                    hacker2.SetActive(true);
+                    hackerMorto1.SetActive(true);
+                  
+                }
+                else
+                {
+                    rispostaSbagliata.SetActive(true);
+                   
+                }
+            }
+        
     }
 
     void VerificaRispostaLivello2()
@@ -95,11 +95,11 @@ public class LivelliTalpa : MonoBehaviour
                 Destroy(GameObject.Find("hacker2"));
                 hacker3.SetActive(true);
                 hackerMorto2.SetActive(true);
-                // GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/chess_solved"); //sprite cubi
             }
             else
             {
                 rispostaSbagliata.SetActive(true);
+
             }
         }
     }
@@ -115,13 +115,14 @@ public class LivelliTalpa : MonoBehaviour
 
             if (inputRisposta == "2")
             {
-
                 Destroy(GameObject.Find("ScreenActivetor"));
                 Destroy(ScreenPanel);
                 Destroy(GameObject.Find("Livello3"));
                 Destroy(GameObject.Find("hacker3"));
                 hackerMorto3.SetActive(true);
+                ricompensaVittoria.SetActive(true);
                 // GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/chess_solved"); //sprite cubi
+
             }
             else
             {

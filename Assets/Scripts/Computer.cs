@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Linq;
+using System.Text.RegularExpressions;
 
-public class Computer : MonoBehaviour, IPointerClickHandler
+public class Computer : MonoBehaviour //--IPointerClickHandler
 {
     public GameObject ScreenPanel;
 
@@ -16,39 +18,73 @@ public class Computer : MonoBehaviour, IPointerClickHandler
 
     private string inputPassword;
 
+    public GameObject ricompensaVittoria;
+
     void Start()
     {
         displayImage = GameObject.Find("displayImage");
-        ScreenPanel.SetActive(false);
-        this.gameObject.SetActive(false);
     }
 
     void Update()
     {
-        VerifyPassword();
+        if (this.gameObject.name == "Computer")
+        {
+            VerifyPassword();
+        }
         HideDisplay();
     }
 
-    public void VerifyPassword()
+    bool VerifyPassword()
     {
-        if (isCorrectPassword) return;
+        int minLength = 8;
+
 
         if (Input.GetKey(KeyCode.Return))
         {
-            
+            Debug.Log("ENTRATO");
             inputPassword = ScreenPanel.transform.Find("Text").GetComponent<Text>().text;
 
             ScreenPanel.transform.Find("Text").GetComponent<Text>().text = "";
 
 
-            if (inputPassword == CorrectPassword)
+            if (inputPassword.Length < minLength)
             {
-                isCorrectPassword = true;
-                Destroy(GameObject.Find("ScreenActivetor"));
-                Destroy(ScreenPanel);
-               // GetComponent<Image>().sprite = Resources.Load<Sprite>("Sprites/chess_solved"); //sprite cubi
+                Debug.Log("Arrivato1");
+                return false;
+
             }
+
+            if (!inputPassword.Any(char.IsLower))
+            {
+                Debug.Log("Arrivato2");
+                return false;
+            }
+
+            if (!inputPassword.Any(char.IsUpper))
+            {
+                Debug.Log("Arrivato3");
+                return false;
+            }
+
+            if (!inputPassword.Any(char.IsDigit))
+            {
+                Debug.Log("Arrivato4");
+                return false;
+            }
+
+            if(!Regex.IsMatch(inputPassword, @"[!@#$%^&*()_+=\[{\]};:<>|./?,-]"))
+            {
+                Debug.Log("Arrivato5");
+                return false;
+            }
+            Debug.Log("Arrivato6");
+            Destroy(GameObject.Find("ScreenActivetor"));
+            Destroy(ScreenPanel);
+            ricompensaVittoria.SetActive(true);
+            this.gameObject.name = "Monitor";
+
         }
+        return false;
     }
 
     void HideDisplay()
@@ -64,8 +100,8 @@ public class Computer : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    public void OnPointerClick(PointerEventData eventData)
+    /*public void OnPointerClick(PointerEventData eventData)
     {
         ScreenPanel.SetActive(false);
-    }
+    }*/
 }

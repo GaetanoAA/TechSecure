@@ -6,11 +6,9 @@ using UnityEngine.EventSystems;
 using System.Linq;
 using System.Text.RegularExpressions;
 
-public class Computer : MonoBehaviour //--IPointerClickHandler
+public class Computer : MonoBehaviour 
 {
     public GameObject ScreenPanel;
-
-    private bool isCorrectPassword = false;
 
     private GameObject displayImage;
 
@@ -41,7 +39,6 @@ public class Computer : MonoBehaviour //--IPointerClickHandler
 
         if (Input.GetKey(KeyCode.Return))
         {
-            Debug.Log("ENTRATO");
             inputPassword = ScreenPanel.transform.Find("Text").GetComponent<Text>().text;
 
             ScreenPanel.transform.Find("Text").GetComponent<Text>().text = "";
@@ -49,35 +46,29 @@ public class Computer : MonoBehaviour //--IPointerClickHandler
 
             if (inputPassword.Length < minLength)
             {
-                Debug.Log("Arrivato1");
                 return false;
 
             }
 
             if (!inputPassword.Any(char.IsLower))
             {
-                Debug.Log("Arrivato2");
                 return false;
             }
 
             if (!inputPassword.Any(char.IsUpper))
             {
-                Debug.Log("Arrivato3");
                 return false;
             }
 
             if (!inputPassword.Any(char.IsDigit))
             {
-                Debug.Log("Arrivato4");
                 return false;
             }
 
             if(!Regex.IsMatch(inputPassword, @"[!@#$%^&*()_+=\[{\]};:<>|./?,-]"))
             {
-                Debug.Log("Arrivato5");
                 return false;
             }
-            Debug.Log("Arrivato6");
             Destroy(GameObject.Find("ScreenActivetor"));
             Destroy(ScreenPanel);
             ricompensaVittoria.SetActive(true);
@@ -99,9 +90,4 @@ public class Computer : MonoBehaviour //--IPointerClickHandler
             this.gameObject.SetActive(false);
         }
     }
-
-    /*public void OnPointerClick(PointerEventData eventData)
-    {
-        ScreenPanel.SetActive(false);
-    }*/
 }

@@ -12,10 +12,8 @@ public class Computer : MonoBehaviour
 
     private GameObject displayImage;
 
-    public string CorrectPassword;
-
     private string inputPassword;
-
+    public GameObject Errata;
     public GameObject ricompensaVittoria;
 
     void Start()
@@ -46,27 +44,32 @@ public class Computer : MonoBehaviour
 
             if (inputPassword.Length < minLength)
             {
+                Errata.SetActive(true);
                 return false;
 
             }
 
             if (!inputPassword.Any(char.IsLower))
             {
+                Errata.SetActive(true);
                 return false;
             }
 
             if (!inputPassword.Any(char.IsUpper))
             {
+                Errata.SetActive(true);
                 return false;
             }
 
             if (!inputPassword.Any(char.IsDigit))
             {
+                Errata.SetActive(true);
                 return false;
             }
 
             if(!Regex.IsMatch(inputPassword, @"[!@#$%^&*()_+=\[{\]};:<>|./?,-]"))
             {
+                Errata.SetActive(true);
                 return false;
             }
             Destroy(GameObject.Find("ScreenActivetor"));

@@ -68,4 +68,9 @@ public class ButtonHandler : MonoBehaviour
     {
         Application.Quit();
     }
+
+    public void OnClickIncominciaPartita()
+    {
+        Destroy(GameObject.Find("Introduzione"));
+    }
 }

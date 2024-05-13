@@ -10,7 +10,7 @@ In questa tesi di laurea, ci proponiamo di affrontare questa sfida progettando u
 Il nostro obiettivo principale è analizzare l'efficacia di questo gioco nel fornire una formazione efficace e nel sensibilizzare sulle tematiche della sicurezza informatica.
 
 
-La documentazione relativa al gioco è situata nella cartella "Docs" con documento word "GUIDA GIOCO" in caso di difficoltà nello svolgimento. 
+La documentazione relativa al gioco è situata nella cartella "Docs" con documento word "GUIDA GIOCO", in caso di difficoltà nello svolgimento, e documento PDF relativo alla Tesi. 
 Per quanto riguarda l'eseguibile del gioco può essere scaricata la cartella "Builds DEF" ed eseguire con doppio click il file "TechSecure.exe"
 
 
